@@ -1,16 +1,13 @@
 import pandas as pd
 import numpy as np
 
+from ltp import LTP
 
-f = pd.read_excel('heyue_fx1.xlsx')
-corpus = f['正文']
+corpus = pd.read_csv('corpus.csv')
+texts = np.array(corpus['正文'])
 
-corpus.to_csv('corpus.csv')
+ltp = LTP()
+seg, hidden = ltp.seg(list(texts)[:1])
+ner = ltp.ner(hidden)
 
-# maxlen = -1
-# lens = []
-#
-# for d in corpus:
-#     if len(d) > maxlen:
-#         maxlen = len(d)
-#     lens.append(len(d))
+entities = [seg[0][n[2]] for n in ner[0]]
