@@ -3,7 +3,7 @@ import numpy as np
 
 from ltp import LTP
 
-corpus = pd.read_csv('corpus.csv')
+corpus = pd.read_csv('data/corpus.csv')
 texts = np.array(corpus['正文'])
 
 ltp = LTP()
